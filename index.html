@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poker Table</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="row"><span class="ln">43</span></div>
+    <div class="row">
+      <span class="ln">44</span>
+      <span class="title">REPLAY</span>
+      <nav class="controls">
+        <button data-act="first" title="First street">[|&lt;]</button>
+        <button data-act="prev"  title="Previous street">[&lt;]</button>
+        <button data-act="play"  id="playBtn">[PLAY]</button>
+        <button data-act="next"  title="Next street">[&gt;]</button>
+        <span>SPEED</span>
+        <button class="speed" data-speed="1">1x</button>
+        <button class="speed on" data-speed="4">4x</button>
+        <button class="speed" data-speed="16">16x</button>
+      </nav>
+    </div>
+    <div class="row">
+      <span class="ln">45</span>
+      <span id="handInfo"></span>
+      <span class="street" id="street"></span>
+    </div>
+  </header>
+
+  <main class="table" id="table">
+    <!-- The rail: two ellipses = the double line around the table -->
+    <svg class="rail" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
+      <ellipse cx="500" cy="290" rx="380" ry="226"/>
+      <ellipse cx="500" cy="290" rx="371" ry="216"/>
+    </svg>
+    <div class="board">
+      <div class="community" id="community"></div>
+      <div class="pot" id="pot"></div>
+    </div>
+    <!-- seats are injected here by render() in game.js -->
+  </main>
+
+  <div class="progress"><div id="progress"></div></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

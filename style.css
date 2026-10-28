@@ -1,0 +1,76 @@
+:root {
+  --bg: #050505;
+  --fg: #f2f2f2;
+  --dim: #8c8c8c;
+  --faint: #3a3a3a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg); color: var(--fg); font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+body { min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 16px; }
+
+/* Everything is sized in cqw (1% of the .app width) so the whole table scales together. */
+.app { width: min(100%, 1400px); container-type: inline-size; }
+
+/* ---------- Header ---------- */
+.row { display: flex; align-items: center; gap: 2cqw; min-height: 3.3cqw; }
+.ln { width: 2cqw; color: var(--faint); font-size: 1.05cqw; }
+.title, #handInfo { font-size: 1.9cqw; font-weight: 500; letter-spacing: .05em; }
+.controls { margin-left: auto; display: flex; align-items: center; gap: 1.3cqw; font-size: 1.9cqw; }
+.controls button {
+  background: none; border: none; color: var(--fg); font: inherit; cursor: pointer;
+  padding: .2cqw .5cqw; letter-spacing: .03em;
+}
+.controls button:hover { color: var(--dim); }
+.controls button.on { background: var(--fg); color: var(--bg); }
+.street { margin-left: auto; font-size: 1.9cqw; font-weight: 500; letter-spacing: .05em; }
+
+/* ---------- Table ---------- */
+.table { position: relative; width: 100%; aspect-ratio: 1000 / 560; margin-top: 1cqw; }
+.rail { position: absolute; inset: 0; width: 100%; height: 100%; }
+.rail ellipse { fill: none; stroke: var(--fg); stroke-width: 2; vector-effect: non-scaling-stroke; }
+
+.board {
+  position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: 1.2cqw;
+  background: var(--bg);
+}
+.community { display: flex; gap: 1cqw; }
+.pot { font-size: 1.6cqw; font-weight: 500; letter-spacing: .05em; }
+
+/* ---------- Cards ---------- */
+.card {
+  width: 3.1cqw; height: 4.3cqw;
+  border: .16cqw solid var(--dim); border-radius: .35cqw;
+  background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25cqw;
+  font-size: 1.25cqw; line-height: 1; color: var(--dim);
+}
+.card .suit { font-size: 1.35cqw; }
+.card.lg {
+  width: 5cqw; height: 7cqw; border: .2cqw solid var(--fg); border-radius: .4cqw;
+  box-shadow: .3cqw .3cqw 0 #bdbdbd; color: var(--fg);
+  font-size: 2.5cqw; font-weight: 500; gap: .5cqw;
+}
+.card.lg .suit { font-size: 2.7cqw; }
+.card.empty { border: .14cqw dashed var(--faint); box-shadow: none; }
+
+/* ---------- Seats ---------- */
+.seat {
+  position: absolute; transform: translate(-50%, -50%);
+  display: flex; flex-direction: column; align-items: center; gap: .55cqw;
+  padding: .6cqw 1cqw; background: var(--bg);   /* the black background "cuts" the rail */
+  font-size: 1.3cqw; letter-spacing: .05em; color: var(--dim);
+}
+.hole { display: flex; gap: .55cqw; margin-bottom: .4cqw; }
+.name, .stack { white-space: nowrap; }
+.bar { width: 8cqw; height: .45cqw; border: .1cqw solid var(--faint); }
+.action { min-height: 1.4cqw; font-size: 1.2cqw; }
+
+/* Players still in the hand: bright cards, solid double bar */
+.seat.in { color: var(--fg); }
+.seat.in .card { border-color: var(--fg); color: var(--fg); box-shadow: .15cqw .15cqw 0 #bdbdbd; }
+.seat.in .bar { border: .12cqw solid var(--fg); border-left: none; border-right: none; height: .6cqw; }
+
+/* ---------- Progress ---------- */
+.progress { margin-top: 1cqw; height: .25cqw; background: var(--faint); }
+.progress > div { height: 100%; background: var(--fg); transition: width .3s; }
